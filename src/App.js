@@ -1,21 +1,41 @@
 export default function App() {
 
-  // Criando um componente que poderá ser utiliado posteriormente
-  const BemVindo = (props) => {
-    return (
+  const Equipe = (props) => {
+    return(
       <div>
-      <h2>Bem vindo(a) {props.nome} </h2>
-      <h3>Tenho {props.idade} anos</h3>
+        <Sobre nome = {props.nome} cargo = {props.cargo} idade = {props.idade}/>
+        <Social fb={props.facebook}/>
+        <hr/>
+      </div>
+    );
+  }
+
+  const Sobre = (props) => {
+    return(
+      <div>
+        <h2>Olá, eu sou o(a) {props.nome}</h2>
+        <h3>Cargo: {props.cargo}</h3>
+        <h3>Idade: {props.idade} anos</h3>
+      </div>
+    );
+  } 
+
+  const Social = (props) => {
+    return(
+      <div>
+        <a href={props.fb}>Facebook</a>
+        <a>LinkedIn: </a>
+        <a>YouTube: </a>
       </div>
     );
   }
 
   return (
     <div>
-      <h1>This is where you must put your components as they'll be loaded by React engine.</h1>
-      <BemVindo nome="Matheus" idade="25"/>
-      <BemVindo nome="Lucas" idade="18" />
-      <h2>Music is enough for a lifetime but a lifetime is not enough for music.</h2>
+      <h1>Conheça nossa equipe!</h1>
+      <Equipe nome="Lucas" cargo="Programador" idade="29" 
+              facebook="https://google.com/"/>
+      <Equipe nome="Matheus" cargo="Designer" idade="19" />
     </div>
   )
 }
