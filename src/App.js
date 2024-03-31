@@ -1,36 +1,48 @@
 import React, { Component} from "react";
 
-class Equipe extends Component {
-  render(){
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nome: "Thiago",
+      contador: 0
+    }
+    this.aumentar = this.aumentar.bind(this);
+    this.diminuir = this.diminuir.bind(this);
+
+  }
+
+  aumentar() {
+    let state = this.state;
+    state.contador += 1;
+    state.nome = "Thiago Maior";
+    this.setState(state);
+  }
+
+  diminuir() {
+    let state = this.state;
+    if(state.contador === 0) {
+      alert('Contador chegou a zero');
+      return;
+    }
+    state.contador -= 1;
+    state.nome = "Thiago Menor";
+    this.setState(state);
+  }
+
+
+
+  render() {
     return(
       <div>
-        <Sobre nome={this.props.nome} cargo={this.props.cargo} idade={this.props.idade} />
-        <hr/>
+        {this.state.nome}
+        <h1>Contador</h1>
+        <button onClick={this.diminuir}>-</button>
+          {this.state.contador}
+        <button onClick={this.aumentar}>+</button>
       </div>
     );
   }
 }
 
-class Sobre extends Component {
-  render(){
-    return(
-      <div>
-        <h2>Olá! Sou o  {this.props.nome} </h2>
-        <h3>Cargo: {this.props.cargo} </h3>
-        <h3>Idade: {this.props.idade} anos</h3>
-      </div>
-    );
-  }
-}
-
-export default function App() {
-
-  return (
-    <div>
-      <h1>Conheça nossa equipe!</h1>
-      <Equipe nome="Ludwig van Beethoven" cargo="Pianista & compositor" idade="253"/>
-      <Equipe nome="Nicolo Paganini" cargo="Violinista & compositor" idade="241"/>
-      <Equipe nome="Camille Saint-Saens" cargo="Organista & compositor" idade="188"/>
-    </div>
-  )
-}
+export default App;
